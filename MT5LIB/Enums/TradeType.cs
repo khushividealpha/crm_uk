@@ -1,0 +1,38 @@
+﻿namespace MT5LIB.Enums;
+
+public enum TradeType
+{
+    None,
+    Buy,
+    Sell,
+    BuyLimit,
+    SellLimit,
+    BuyStop,
+    SellStop,
+    BuyStopLimit,
+    SellStopLimit,
+    Deposit,
+    Withdrawal,
+    CreditIn,
+    CreditOut,
+    ChargeIn,
+    ChargeOut,
+    CorrectionIn,
+    CorrectionOut,
+    BonusIn,
+    BonusOut,
+    Commission,
+    CommissionDaily,
+    CommissionMonthly,
+    AgentDaily,
+    AgentMonthly,
+    Interestrate,
+    BuyCanceled,
+    SellCanceled,
+    Divident,
+    DividentFranked,
+    Tax,
+    Agent,
+    SoCompensation,
+    SOCompensationCredit
+}

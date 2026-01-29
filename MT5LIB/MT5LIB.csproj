@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Protos\apmcrmmsgs.proto" />
+    <None Remove="Protos\apmcrmmsgstypes.proto" />
+    <None Remove="Protos\apmcrmmsgstypesUK.proto" />
+    <None Remove="Protos\apmcrmmsgsUK.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.31.1" />
+    <PackageReference Include="Grpc.Tools" Version="2.72.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="protobuf-net" Version="3.2.56" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CLIB\CLIB.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\apmcrmmsgs.proto" />
+    <Protobuf Include="Protos\apmcrmmsgstypes.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MetaQuotes.MT5CommonAPI64">
+      <HintPath>bin\Debug\net8.0\MetaQuotes.MT5CommonAPI64.dll</HintPath>
+    </Reference>
+    <Reference Include="MetaQuotes.MT5ManagerAPI64">
+      <HintPath>bin\Debug\net8.0\MetaQuotes.MT5ManagerAPI64.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

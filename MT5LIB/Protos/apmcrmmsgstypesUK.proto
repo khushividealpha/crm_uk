@@ -1,0 +1,24 @@
+syntax = "proto3";
+package apmcrm.v1.msgs.types;
+
+enum MessageType {
+    Authorization = 0;
+    Subscriptions = 1;
+    Response = 2;
+    Order = 3;
+    Deal = 4;
+    Transaction = 5;
+    Summary = 6;
+    User = 7;
+    PositionOpen = 8;
+}
+enum MessageState {
+    New = 0;
+    Update = 1;
+    Delete = 2;
+}
+message ApmCrmMessage {
+    MessageType type = 1;
+    MessageState state = 2;
+    bytes value = 3;
+}

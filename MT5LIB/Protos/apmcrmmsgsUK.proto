@@ -1,0 +1,261 @@
+syntax = "proto3";
+package apmcrm.v1.msgs;
+
+message Authorization {
+    string token = 1;
+}
+message Subscriptions {
+    repeated uint64 mtIds = 1;
+}
+message Response {
+    bool successful = 1;
+    string result = 2;
+}
+
+//==============================
+//Order
+//==============================
+/*
+"clientName": "",
+"comment": "",
+"demo": true,
+"doneTime": "2024-06-13 07:07:59.043",
+"login": 10222,
+"order": 187080,
+"position": 187080,
+"price": 0,
+"reason": "Client",
+"setupTime": "2024-06-13 07:07:59.043",
+"sl": 0,
+"symbol": "EURUSD.d",
+"tp": 0,
+"type": "Sell",
+"volumeFilled": 0.01,
+"volumeTotal": 0.01,
+"state":"Placed"
+*/
+message Order {
+    string clientName = 1;
+    string comment = 2;
+    bool demo = 3;
+    string doneTime = 4;
+    uint64 login = 5;
+    uint64 order = 6;
+    uint64 position = 7;
+    double price = 8;
+    string reason = 9;
+    string setupTime = 10;
+    double sl = 11;
+    string symbol = 12;
+    double tp = 13;
+    string type = 14;
+    double volumeFilled = 15;
+    double volumeTotal = 16;
+    string state = 17;
+}
+
+//==============================
+//Deal
+//==============================
+/*
+"clientName": "",
+"comment": "[sl 0.67138]",
+"commissionFee": -0.05,
+"currency": "USD",
+"deal": 189883,
+"dealer": 0,
+"demo": true,
+"entry": "Out",
+"fee": 0,
+"login": 10220,
+"marketAsk": 0.6714,
+"marketBid": 0.67129,
+"order": 195820,
+"position": 194747,
+"price": 0.6714,
+"profit": -1.44,
+"reason": "SL",
+"sl": 0.67138,
+"swap": 0,
+"symbol": "AUDUSD.d",
+"time": "2024-07-03 11:31:31.857",
+"tp": 0,
+"type": "Buy",
+"volume": 0.01
+*/
+message Deal {
+    string clientName = 1;
+    string comment = 2;
+    double commissionFee = 3;
+    string currency = 4;
+    uint64 deal = 5;
+    uint64 dealer = 6;
+    bool demo = 7;
+    string entry = 8;
+    double fee = 9;
+    uint64 login = 10;
+    double marketAsk = 11;
+    double marketBid = 12;
+    uint64 order = 13;
+    uint64 position = 14;
+    double price = 15;
+    double profit = 16;
+    string reason = 17;
+    double sl = 18;
+    double swap = 19;
+    string symbol = 20;
+    string time = 21;
+    double tp = 22;
+    string type = 23;
+    double volume = 24;
+}
+
+//==============================
+//Transaction
+//==============================
+/*
+"amount": 1000,
+"comment": "test api",
+"currency": "USD",
+"dealid": 180159,
+"dealtime": "2024-06-12T08:33:22.000",
+"demo": true,
+"login": 10220,
+"name": "",
+"type": "Deposit"
+*/
+message Transaction {
+    double amount = 1;
+    string comment = 2;
+    string currency = 3;
+    uint64 dealid = 4;
+    string dealtime = 5;
+    bool demo = 6;
+    uint64 login = 7;
+    string name = 8;
+    string type = 9;
+}
+
+//==============================
+//Summary
+//==============================
+/*
+"additional": 0,
+"clientName": "",
+"commission": -1.7,
+"credit": 0,
+"curBalance": 9677.33,
+"curEquity": 9677.24,
+"currency": "USD",
+"demo": true,
+"deposit": 10270.8,
+"fee": 0,
+"inOut": 9689.2,
+"loginid": 10222,
+"profit": -0.15,
+"swap": 0,
+"volume": 0.34,
+"withdraw": -581.6
+*/
+message Summary {
+    double additional = 1;
+    string clientName = 2;
+    double commission = 3;
+    double credit = 4;
+    double curBalance = 5;
+    double curEquity = 6;
+    string currency = 7;
+    bool demo = 8;
+    double deposit = 9;
+    double fee = 10;
+    double inOut = 11;
+    uint64 loginid = 12;
+    double profit = 13;
+    double swap = 14;
+    double volume = 15;
+    double withdraw = 16;
+}
+
+//==============================
+//User
+//==============================
+/*
+"address": "",
+"balance": 9677.33,
+"city": "",
+"client": 0,
+"comment": "",
+"country": "",
+"created": "2024-06-11 10:32:30.000",
+"credit": 0,
+"email": "",
+"group": "demo\\USDstd",
+"lastaccess": "2024-07-04 07:52:47.000",
+"leverage": 100,
+"loginid": 10222,
+"name": "",
+"phone": "",
+"status": "Active",
+"zipcode": ""
+*/
+message User {
+    string address = 1;
+    double balance = 2;
+    string city = 3;
+    uint64 client = 4;
+    string comment = 5;
+    string country = 6;
+    string created = 7;
+    double credit = 8;
+    string email = 9;
+    string group = 10;
+    string lastaccess = 11;
+    uint64 leverage = 12;
+    uint64 loginid = 13;
+    string name = 14;
+    string phone = 15;
+    string status = 16;
+    string zipcode = 17;
+    double equity = 18;
+    double margin = 19;
+    double freemargin = 20;
+    bool enabled = 21;
+}
+
+//==============================
+//Position Open
+//==============================
+/*
+"comment": "",
+"id": 0,
+"loginid": 2102,
+"positionid": 215892,
+"priceCurr": 2664.4,
+"priceOpen": 2677.51,
+"profit": 31464,
+"reason": "Client",
+"sl": 0,
+"swap": 0,
+"symbol": "GC24Z.n",
+"time": "2024-09-25 12:22:58.000",
+"tp": 0,
+"type": "Sell",
+"volume": 24
+*/
+message PositionOpen {
+    string comment = 1;
+    uint64 id = 2;
+    uint64 loginid = 3;
+    uint64 positionid = 4;
+    double priceCurr = 5;
+    double priceOpen = 6;
+    double profit = 7;
+    string reason = 8;
+    double sl = 9;
+    double swap = 10;
+    string symbol = 11;
+    string time = 12;
+    double tp = 13;
+    string type = 14;
+    double volume = 15;
+}
