@@ -1,6 +1,4 @@
-﻿using CLIB.Models;
-using MetaQuotes.MT5CommonAPI;
-using MetaQuotes.MT5ManagerAPI;
+﻿using MetaQuotes.MT5CommonAPI;
 using Microsoft.Extensions.Logging;
 using MT5LIB.Helpers;
 using MT5LIB.Models;

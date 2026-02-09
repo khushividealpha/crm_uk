@@ -10,7 +10,7 @@ namespace MT5LIB.Helpers;
 
 public class Utilities
 {
-    internal static ConcurrentDictionary<ulong, ManagerUser> dctUser = new();
+    public static ConcurrentDictionary<ulong, ManagerUser> dctUser = new();
     internal static ConcurrentDictionary<ulong, ManagerSummaryReport> dctSummary = new();
     internal static ConcurrentDictionary<string, string> dctSymbol = new();
     private static readonly DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);

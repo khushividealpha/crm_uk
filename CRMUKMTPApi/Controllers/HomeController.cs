@@ -18,7 +18,6 @@ public class HomeController : Controller
         _mediator = mediator;
         _repo = repo;
     }
-
     [HttpGet]
     [Route("info")]
     public  string GetInfo()
@@ -206,7 +205,7 @@ public class HomeController : Controller
         return await _mediator.Send(query);
     }
    
-    [HttpGet]
+    [HttpPost]
     [Route("lasttradetime")]
     public async Task<object> GetLastTradeTime([FromBody] GetLastTradeTimeRequest req)
     {
@@ -214,7 +213,7 @@ public class HomeController : Controller
         return await _mediator.Send(query);
     }
     [HttpPost("deposit")]
-    public async Task<IActionResult> Deposit([FromBody] DepositWithdrawalRequest request)
+    public async Task<IActionResult> Deposit([FromBody] TransactionRequest request)
     {
         if (request == null)
             return BadRequest("Invalid request");
@@ -242,7 +241,7 @@ public class HomeController : Controller
         });
     }
     [HttpPost("withdrwal")]
-    public async Task<IActionResult> Withdrawal([FromBody] DepositWithdrawalRequest request)
+    public async Task<IActionResult> Withdrawal([FromBody] TransactionRequest request)
     {
         if (request == null)
             return BadRequest("Invalid request");
@@ -268,6 +267,68 @@ public class HomeController : Controller
             dealId = result.DealId,
             message = result.Message
         });
+    }
+    [HttpPost("internaltransfer")]
+    public async Task<IActionResult> InternalTransfer([FromBody] InternalTranReuest request)
+    {
+        if (request == null)
+            return BadRequest("Invalid request");
+
+        var result = await _repo.TransferBetweenAccountsAsync(
+            request.From,
+            request.To,
+            request.Amount,
+            request.FromComment,
+            request.ToComment
+
+
+        );
+
+        if (!result)
+        {
+            return BadRequest(new
+            {
+                status = "Failed",
+            });
+        }
+
+        return Ok(new
+        {
+            status = "Success",
+        });
+    }
+    [HttpPost("signupmt")]
+    public async Task<object> SignUpMT([FromBody] SignUpMTModel request)
+    {
+        SignupMt5UserCommand query = new SignupMt5UserCommand(request);
+        return await _mediator.Send(query);
+    }
+
+    [HttpPost("createclient")]
+    public async Task<object> CreateClient([FromBody] CreateClientRequest client )
+    {
+        CreateClientCommand query = new CreateClientCommand(client);
+        return await _mediator.Send(query);
+    }
+    [HttpGet("firstDeposit")]
+    public async Task<object> FirstDeposit([FromBody] FirstDepositRequestModel client)
+    {
+        FirstDepositRequestCommand query = new FirstDepositRequestCommand(client);
+        return await _mediator.Send(query);
+    }
+
+    [HttpPost("updateUser")]
+    public async Task<IActionResult> UpdateUsers(
+        [FromBody] UpdateUsersRequest request)
+    {
+        if (request.Users == null || !request.Users.Any())
+            return BadRequest("Users list is empty");
+
+        var command = new UpdateUsersCommand(request.Users);
+
+        var result = await _mediator.Send(command);
+
+        return Ok(result);
     }
 }
 

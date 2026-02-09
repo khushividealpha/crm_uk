@@ -25,7 +25,7 @@ namespace CRMUKMTPApi.Repositories
                 .Select(g => new
                 {
                     LoginId = g.Key,
-                    OldestTime = g.Min(x => x.Time)
+                    OldestTime = g.Max(x => x.Time)
                 })
                 .ToDictionaryAsync(x => x.LoginId, x => x.OldestTime);
                 return result;

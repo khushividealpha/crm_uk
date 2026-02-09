@@ -124,7 +124,7 @@ try
     app.MapControllers();
     //app.UseMiddleware<OriginMiddleware>();
     app.UseMiddleware<GlobalExceptionHandler>();
-    //app.UseMiddleware<FirebaseAuthenticationMiddleware>();
+   // app.UseMiddleware<FirebaseAuthenticationMiddleware>();
 
     app.Map("/listener", async context =>
     {
